@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Text;
 
 namespace TestConnectionsApp.Pages
 {
@@ -21,7 +22,7 @@ namespace TestConnectionsApp.Pages
                 using (SqlConnection connection =
                 new SqlConnection(Configuration.GetConnectionString("SampleDB")))
                 {
-                    ViewData["ConnectionMessage"] = "Created Connection to database: " + connection.Database;
+                    ViewData["ConnectionMessage"] = "Going to connect to : " + maskPassword(connection.ConnectionString);
 
                     try
                     {
@@ -52,6 +53,27 @@ namespace TestConnectionsApp.Pages
             {
                 ViewData["ConnectionMessage"] = "Unable to create connection! Exception: " + ex.Message;
             }
+        }
+        private string maskPassword(string connectionString)
+        {
+            var parts = connectionString.Split(";");
+            var newConnectionString = new StringBuilder();
+            foreach (var part in parts)
+            {
+                var kv = part.Split("=");
+                if (kv.Length == 2 && kv[0].ToLower() == "password")
+                {
+                    newConnectionString.Append(kv[0]);
+                    newConnectionString.Append("=********");
+                }
+                else
+                {
+                    newConnectionString.Append(part);
+                }
+                newConnectionString.Append(";");
+            }
+            
+            return newConnectionString.ToString();
         }
     }
 }
