@@ -1,0 +1,19 @@
+﻿@page
+@model TestConnectionsApp.Pages.AzureRedisTestModel
+@{
+    ViewBag.Title = "Test Azure Cache for Redis";
+}
+<h3>Test connection to Azure Cache for Redis</h3>
+<br/>
+<table border="1" cellpadding="10" class="redis-results">
+    <tr>
+        <th>Command</th>
+        <th>Result</th>
+    </tr>
+    @foreach(var item in Model.RedisMessages) {
+    <tr>
+        <td>@item.Key</td>
+        <td><pre>@item.Value</pre></td>
+    </tr>
+    }
+</table>

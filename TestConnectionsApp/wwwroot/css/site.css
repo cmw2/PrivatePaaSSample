@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table {
+    width: 800px;
+}
+
+    table td {
+        word-wrap: break-word;
+    }

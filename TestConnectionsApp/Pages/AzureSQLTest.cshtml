@@ -1,7 +1,19 @@
 ﻿@page
 @model TestConnectionsApp.Pages.AzureSQLTestModel
 @{
-    <p><b>Create Connection Test Result:</b> @ViewData["ConnectionMessage"]</p>
-    <p><b>Open Connection Test Result:</b> @ViewData["ConnectMessage"]</p>
-    <p><b>Table Check Result:</b> @ViewData["TableMessage"]</p>
+    <h3>Test connection to Azure SQL Database</h3>
+    <br />
+    <table border="1" cellpadding="10" class="sql-results">
+        <tr>
+            <th>Command</th>
+            <th>Result</th>
+        </tr>
+        @foreach (var item in Model.SqlMessages)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td><pre>@item.Value</pre></td>
+            </tr>
+        }
+    </table>
 }
