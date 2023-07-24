@@ -64,6 +64,14 @@ We're going to use all the default generated URLs for this exercise but in your 
 [See Create Front Door instructions](docs/create-front-door.md)
 
 ## Create SQL Database
+At this point we have a working website but it's standalone, i.e. not using any other servies, which is unlikely for a real website.  Azure SQL Database is a common need for PaaS oriented websites.
+
+Azure SQL Database is a PaaS style relational database.  It handles most of the management functions such as upgrading, patching, etc.  It is a very flexible service which can scale from the smallest sporadically used development database to 100TB business critical always on databases.
+
+As a side note, another common alternative is to use SQL Managed Instance.  This is still a managed service but provides functionality very similar to what DBA's are used to on premise.  
+
+[See Create SQL Database instructions](docs/create-sql-database.md)
+
 
 ## Create Redis Cache
 

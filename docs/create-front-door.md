@@ -8,7 +8,7 @@ Starting from the resource group:
 1. Click the Create button
 1. Keep the defaults of "Azure Front Door" and "Quick create" and click Continue to create a Front Door.
 1. Again verify the Subscription and Resource Group
-1. Enter a name for your web app
+1. Enter a name for your front door
 	1. I'm using "afd-private-paas" for this sample.	
 1. Change the Tier to Premium so we can connect to the App Service over private networking.
 1. For endpoint name enter "app-private-pass".
