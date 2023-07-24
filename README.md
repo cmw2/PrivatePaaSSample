@@ -21,7 +21,7 @@ Azure Services used in this sample:
 
 - Azure subscription - [create one for free](https://azure.microsoft.com/free/)
 
-## Create Resource Group
+## Azure Resource Group
 Resource Groups are a mechanism to group together multiple related Azure resources to simplify maintenance of them. 
 We're going to create everything in this walkthrough in a single resource group.  This probably isn't how you would structure it in production but this will give us a good place to find all of our resources and also make cleanup easy.
 
@@ -29,7 +29,7 @@ Instructions:
 - [Create Resource Group](docs/create-resource-group.md#create-resource-group)
 - [Navigate back to Resource Group](docs/create-resource-group.md#getting-back-to-the-resource-group)
 
-## Create Virtual Network
+## Azure Virtual Network
 A virtual network provides a private network for your resources to communicate with each other without going over public/shared networks.  You can connect virtual networks to each other and even to your on premise networks.
 
 Azure PaaS services, like Azure SQL Database, are traditionally accessed via public networking.  We will be joining Azure PaaS services to the private virtual networks with Private Endpoints.  This will allow you to access these services from within your vnet without going over the public internet.
@@ -45,7 +45,7 @@ Instructions:
 
 
 
-## Create an App Service
+## Azure App Service
 An App Service is a managed hosting environment for your web applications.  It can host web applications written in many different languages and frameworks (like .NET, Java, Node, etc).  It can also host APIs and Functions.  It can also host static websites.  It can also host containers.  It's a very flexible service.
 
 We're going to host the application that is stored in this GitHub repository.  Whatever application you're going to host will have certain requirements of how things should be configured.  So be prepared that you will need to alter the steps below to match those needs when you do this for a real application.
@@ -58,7 +58,7 @@ Instructions:
 - [Create App Service](docs/create-web-app.md#create-app-service)
 - [Deploy Web Site Code](docs/create-web-app.md#deploy-application)
 
-## Create a Front Door to the App Service
+## Azure Front Door
 Azure Front Door (AFD) is a modern Content Delivery Network (CDN) used to improve the performance, availability, and security of web applications and APIs.  It has multiple features including content caching, intelligent routing and load balancing, and a built-in web appliction firewall.
 
 We're going to create an Azure Front Door instance and configure it to deliver our App Service's content.  The network flow will be from users to AFD over public networking and then from AFD to the App Service/Web App over private networking.
@@ -70,7 +70,7 @@ Instructions:
 - [Approve Private Endpoint](docs/create-front-door.md#approve-private-endpoint)
 - [Test Web Site](docs/create-front-door.md#test-the-web-app)
 
-## Create SQL Database
+## Azure SQL Database
 At this point we have a working website but it's standalone, i.e. not using any other servies, which is unlikely for a real website.  Azure SQL Database is a common choice when websites need a relational database.
 
 Azure SQL Database is a PaaS style relational database.  It handles most of the management functions such as upgrading, patching, etc.  It is a very flexible service which can scale from the smallest sporadically used development database to 100TB business critical always on databases.
@@ -79,19 +79,36 @@ As a side note, another common alternative is to use SQL Managed Instance.  This
 
 Instructions:
 - [Create SQL Database](docs/create-sql-database.md)
-- [Use SQL Authentication](docs/create-sql-database.md#use-sql-auth-connection-string)
-- [Use Azure AD Authentication](docs/create-sql-database.md#use-azure-ad-connection-string)
+- [Configure Web App to Connect with SQL Authentication](docs/create-sql-database.md#use-sql-auth-connection-string)
+- [Configure Web App to Connect with  Azure AD Authentication](docs/create-sql-database.md#use-azure-ad-connection-string)
 
-## Create Redis Cache
+## Azure Redis Cache
+Another common resource needed by websites, especially those that need to scale and have high uptime, is a high performance cache.  Websites store session and other data in the cache which can help with scaling to multiple nodes as well as take load off of backend systems like databases.
 
-## Create Key Vault
+- Note this is a different cache than the one built-in to Azure Front Door which is used to take load off of your website. We'll often use both.
 
-## Create Log Analytics Workspace
+Instructions:
+- [Create Azure Cache fo Redis](docs/create-redis.md)
+- [Configure Web App to connect to Redis](docs/create-redis.md#use-connection-string)
+- [Test](docs/create-redis.md#test-redis-connection)
 
-## Create Application Insights
+## Azure Key Vault
+Azure Key Vault is used to securely store sensitive items like certificates, keys, passwords, access keys, etc.  It can be used to digitally sign content or simply to centrally store and manage secrets.  We're going to use it to store the Azure Redis Connection String since it has an Access Key embedded in it.
+
+By using Key Vault we have a central place we can manage permissions and change the value when needed.
+
+Instructions:
+- [Create Azure Key Vault](docs/create-key-vault.md)
+
+## Azure Log Analytics Workspace
+
+## Azure Application Insights
 
 ## Delete Resources
-
+When you're ready to delete these resources, the easiest way is to delete the resource group itself.  This will also delete all the resources in it.
+1. Navigate to the Resource Group
+1. Click _Delete resource group_ button in toolbar
+1. Confirm the action by typing the name of the resource group and clicking _Delete_
 
 
 

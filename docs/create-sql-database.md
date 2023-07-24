@@ -119,13 +119,13 @@ Next we need to run some commands in the database.  At the moment that database 
     1. If you don't see a Networking blade you're probably on your SQL Database, not your SQL Server.  See instructions just above.
 1. Click the _Selected networks_ option under Public Access
 1. Scroll down to the Firewall rules section and click _Add your client IPv4 address_ link.
+    - Make a note of the IP address it adds here so you can use it again in the Key Vault section.
 1. Click _Save_ button
 1. After it has saved, select the _SQL Databases_ blade in the left hand menu
 1. Click the row with your database (probably SampleDB)
 1. Select the _Query editor (preview)_ blade
 1. The right hand side should show you logged in with a blue button _Continue as yourname_.  Click that button.
 1. On the right hand side will be a new query windw.  Paste the below code into that window:
-
     ```
     CREATE USER [<identity-name>] FROM EXTERNAL PROVIDER;
     ALTER ROLE db_datareader ADD MEMBER [<identity-name>];
@@ -133,9 +133,7 @@ Next we need to run some commands in the database.  At the moment that database 
     ALTER ROLE db_ddladmin ADD MEMBER [<identity-name>];
     GO
     ```
-
 1. Replace the \<identity-name\> with the name of the managed identity.  Since we used a System Managed Identity that will be the same as the name of the Web App/App Service.  For me that is app-private-pass. So my block looks like
-
     ```
     CREATE USER [app-private-paas] FROM EXTERNAL PROVIDER;
     ALTER ROLE db_datareader ADD MEMBER [app-private-paas];
@@ -143,7 +141,6 @@ Next we need to run some commands in the database.  At the moment that database 
     ALTER ROLE db_ddladmin ADD MEMBER [app-private-paas];
     GO
     ```
-
 1. Click the _Run_ button.  You should get a message in the Messages area (lower right) that says the query succeeded.
 
 ### Change the connection string
