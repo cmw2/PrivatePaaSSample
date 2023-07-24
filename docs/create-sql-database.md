@@ -1,5 +1,6 @@
 # Create SQL Database
 
+## Create the Database
 Starting from the resource group:
 
 1. Click the _Create_ button in the top left of the toolbar.
@@ -53,7 +54,7 @@ Starting from the resource group:
 
 It will take a couple minutes for this deployment to finish.  Once it does we need to configure the web app with the connection string and then test things out.
 
-## SQL Auth Connection String
+## Use SQL Auth Connection String
 Applications can connect to the database using either SQL Auth (User and Password in connection string) or Azure AD Auth (using Managed Identity, no password in connection string).  We'll explore both but we'll go the simple route first.  
 
 We're going to store this connection string in the App Service configuration.  That's ok, but even better will be to put it in Key Vault which we'll explore later
@@ -92,7 +93,7 @@ Now we should be able to test our connection to SQL. We want to use the Front Do
 5. You should get a screen that shows you the Connection String it tried to use (with the password masked) and messages about trying to Connect as well as a count of the number of tables in the database.
     1. If you don't have success, you should see error messages instead that hopefuly can guide you to where things went wrong.
 
-## Azure AD (Entra ID) Connection String
+## Use Azure AD (Entra ID) Connection String
 In the previous example we used SQL Authentication and a connection string with a password.  In this section we're going to switch to using Azure Active Directory (now called Entra ID) authentication instead.  This will allow us to avoid the password in the connection string and manage permissions with AAD.  Another approach would be to use the techniques we discuss later to store secrets in Azure Key Vault instead of directly in the App Service Configuration.
 
 In this scenario the user account won't be the SQL Admin, but will instead be a Managed Identity representing the Web App. This is like a service account for the web app.
@@ -144,21 +145,15 @@ Next we need to run some commands in the database.  At the moment that database 
     ```
 
 1. Click the _Run_ button.  You should get a message in the Messages area (lower right) that says the query succeeded.
-1. Select the _Connection Strings_ blade
-    1. You can click _OK_ to discard our query window content.  It won't rollback their effect.
-1. The first box should be labelled _ADO.NET (Active Directory passwordless authentication)_.  Click the _Copy to clipboard_ icon its lower right.
-1. Now, let's clean up that firewall rule and Public Access we had to create. Select the _Overview_ blade
-1. Click the name of the database server on the right to navigate to it
-1. Select the _Networking_ blade
-1. Scroll down until you see the list of Firewall rules and then delete the rule you added with the trash can icon on the right.
-1. Scroll back up and select the _Disable_ option under Public network access.
-1. Click _Save_ button
 
-Finally let's head over to the Web App/App Service and switch the connection strings and test things out.
+### Change the connection string
+1. Select the _Connection Strings_ blade
+    1. You can click _OK_ to discard our query window content.  It won't rollback the effect.
+1. The first box should be labelled _ADO.NET (Active Directory passwordless authentication)_.  Click the _Copy to clipboard_ icon its lower right.
 1. Navigate to the Web App/App Service
-1. Select the _Coniguration_ blade
+1. Select the _Configuration_ blade
 1. Scoll down to find the connection string you created earlier and click its Name.
-1. In the window that opened up, delete what's currently in the Value window and then paste in the connection string you copied from above.
+1. In the window that opens up, delete what's currently in the Value window and then paste in the connection string you copied from above.
 1. Click _OK_ button
 1. Click _Save_ button
 1. Confirm by clicking _Continue_
@@ -166,6 +161,16 @@ Finally let's head over to the Web App/App Service and switch the connection str
 Now that you've made the changes, go test things out following the instructions in the [Test SQL Connection](#test-sql-connection) section. Or maybe you still have that tab open and can refresh.  
 
 Double check the connection string it shows to make sure it is the new one and doesn't have a password field in it.  If not, you may just need to wait a minute and refresh as you may have still been using the old site before it fully restarted.
+
+## Cleanup Firewall
+Let's also clean up that firewall rule and Public Access we had to create. 
+1. Navigate back to the Database Server
+1. Select the _Networking_ blade
+1. Scroll down until you see the list of Firewall rules and then delete the rule you added with the trash can icon on the right.
+1. Scroll back up and select the _Disable_ option under Public network access.
+1. Click _Save_ button
+
+Not a bad idea to [test again](#test-sql-connection).
 
 ---
 [Back to main instructions](/README.md)
