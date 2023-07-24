@@ -1,6 +1,6 @@
-# Create SQL Database
+# Azure SQL Database
 
-## Create the Database
+## Create SQL Database
 Starting from the resource group:
 
 1. Click the _Create_ button in the top left of the toolbar.
@@ -93,7 +93,7 @@ Now we should be able to test our connection to SQL. We want to use the Front Do
 5. You should get a screen that shows you the Connection String it tried to use (with the password masked) and messages about trying to Connect as well as a count of the number of tables in the database.
     1. If you don't have success, you should see error messages instead that hopefuly can guide you to where things went wrong.
 
-## Use Azure AD (Entra ID) Connection String
+## Use Azure AD Connection String
 In the previous example we used SQL Authentication and a connection string with a password.  In this section we're going to switch to using Azure Active Directory (now called Entra ID) authentication instead.  This will allow us to avoid the password in the connection string and manage permissions with AAD.  Another approach would be to use the techniques we discuss later to store secrets in Azure Key Vault instead of directly in the App Service Configuration.
 
 In this scenario the user account won't be the SQL Admin, but will instead be a Managed Identity representing the Web App. This is like a service account for the web app.

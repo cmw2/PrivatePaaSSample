@@ -1,5 +1,6 @@
-# Create Resource Group
+# Azure Resource Group
 
+## Create Resource Group
 1. Start by logging into your Azure Portal.  (https://portal.azure.com or https://portal.azure.us or other relevant URL.)
 1. From the Home page, click on Resource groups.  
 	1. You might have to scroll down to see this option.

@@ -1,5 +1,6 @@
-# Create Virtual Network
+# Azure Virtual Network
 
+## Create Virtual Network
 We're starting within your resource group where we left off in the previous section.
 
 1. Click the Create button in the top left of the toolbar.

@@ -1,5 +1,6 @@
-# Create Azure Front Door
+# Azure Front Door
 
+## Create Front Door
 Starting from the resource group:
 
 1. Click the Create button in the top left of the toolbar.
@@ -29,7 +30,10 @@ Starting from the resource group:
 1. Click Review + create
 1. After validation passes, click Create button.
 
-It will take a couple minutes for this deployment to finish.  Once it does we need to approve out private networking request.
+It will take a couple minutes for this deployment to finish.
+
+## Approve Private Endpoint
+Once the Front Door has finished creating, we need to approve our private networking request.
 
 Starting again at the resource group:
 1. Navigate to your App Service
@@ -40,13 +44,14 @@ Starting again at the resource group:
 1. Confirm by clicking the Yes button
 1. Wait while that finishes.  Click the Refresh button (in the toolbar, not the browser refresh) until the Connection state changes to Approved.
 
+## Test the Web App
 Finally let's test our site so far.  Head back to the resource group
 1. Navigate to the Front Door
 1. In the main view (Overview blade) you should see your Endpoint hostname listed.  (You may have to scroll down a little bit.)
 1. Click the Copy button next to the hostname.
 1. Open a new browser tab and paste in the url and navigate to it
 1. You should see a site that has a  "Welcome" header and menu items for testing Azure SQL and Azure Redis.  We haven't set them up so those pages won't work yet but we should at least see the menu choices.  Setting those up comes next.
-	1. It does take some time for things to get working so it's possible it won't be available on your first try.  In that case try again after a minute or so.
+	- It does take some time for things to get working so it's possible it won't be available on your first try.  In that case try again after a minute or so.
     
 ---
 [Back to main instructions](/README.md)

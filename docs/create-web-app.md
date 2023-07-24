@@ -1,9 +1,11 @@
-# Create App Service and Web App
+# Azure App Service
 
+## Create App Service
 Starting from the resource group:
 
 1. Click the Create button in the top left of the toolbar.
 1. In the search box, type "web app" and press Enter.
+	1. We're creating a Web App style App Service.
 1. Click Web App in the search results
 1. Click the Create button
 1. Again verify the Subscription and Resource Group
@@ -12,7 +14,7 @@ Starting from the resource group:
 	1. However, this has to be a globally unique name so you will need to customize that name.  Perhaps add your initials at the beginning or end.
 1. For the Runtime stack, select .NET 6 (LTS)
 1. Scroll down to the Pricing plans section and click Create new
-1. Give the App Service a name.  I'm using "plan-private-paas" for this sample.
+1. Give the App Service Plan a name.  I'm using "plan-private-paas" for this sample.
 1. You can keep the rest of the fields as the defaults on this page.
 1. Click Next: Deployment
 1. Click Next: Networking
@@ -38,6 +40,7 @@ Starting from the resource group:
 1. We next want to get to the Web App.  Depending on whether you hit the error above you can either click Go to Resource or Go to Resource Group.
 	1. If you went to the Resource Group, click on the Web App in the list of resources.
 
+## Deploy Application
 Now that the Web App is created we're going to tell it to get the application from this GitHub repository.
 
 1. While on the Web App page, click on the Deployment Center blade in the left hand menu.
@@ -57,8 +60,8 @@ Now that the Web App is created we're going to tell it to get the application fr
 1. Click Save in the toolbar.
 1. You can switch to the Logs tab and watch the deployment happen.  It can take a few minutes.  You can use the Refresh icon to monitor the status, though the page will automatically update itself as well.
 
-Once this creates you actually won't be able to browse to it.  We have it isolated to the vnet.  You could add a VM and a Bastion host to the vnet so you could sign into a computer within the VNet and then browse to it.  But we're going to use an Azure Front Door in the next section to make the site availabe to public networks.  We do this because Front Door provides extra performance and security benefits over just making the App Service itself publicly accessible.  So for now, you can see the site create but you won't be able to test it yet.
-
+## Testing
+Once this creates you actually won't be able to browse to it.  We have it isolated to the vnet.  You could add a VM and a Bastion host to the vnet so you could sign into a computer within the VNet and then browse to it.  But we're going to use an Azure Front Door in the next section to make the site availabe to public networks.  We do this because Front Door provides extra performance and security benefits over just making the App Service itself publicly accessible.  So for now, you can see that the site was created but you won't be able to browse to  it yet.
 
 ---
 [Back to main instructions](/README.md)
