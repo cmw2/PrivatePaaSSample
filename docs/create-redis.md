@@ -28,7 +28,16 @@ This could take a while to finish.
 Like SQL, we can use connection strings that have passwords (access keys in this case) in them or ones that use Managed Identity.  However for Redis the second option is currently in preview so we're not going to explore that.  We're going to use the traditional type of connection string.  For now we're going to put this in the App Service's configuration.  In Key Vault instructions we'll move this into Key Vault and access from there.
 
 1. Once the cache is created, navigate to it.
-1. 
+1. On the _Overview_ blade, in the _Essentials_ area look for and click on _Show access keys_ link.
+1. Find the _Primary connection string_ box and click the _Copy to clipboard_ icon in the right hand side.
+1. Navigate to the App Service.
+1. Select the _Configuration_ blade
+1. Click the _New application setting_ link
+1. Paste your copied connection string into the Value field
+1. Enter "CacheConnection" into the _Name_ field
+1. Click _OK_ button
+1. Click _Save_ in the toolbar
+1. Confirm by clicking _Continue_ button
 
 
 ## Test Redis Connection
@@ -37,7 +46,7 @@ Now we should be able to test our connection to the Azure Redis Cache. Again, we
 2. On the overview blade find the Endpoint hostname and click the _Copy_ icon to the right of it.
 3. Open a new browser tab and navigate to the URL you just copied.
 4. Click the _Azure Redis Test_ menu item
-5. You should get a screen that shows you the Connection String it tried to use (with the password masked) and messages about trying to Connect as well as a count of the number of tables in the database.
+5. You should get a screen that shows you the Connection String it tried to use (with the password masked) and messages about trying to Connect as well reading and writing to the cache.
     1. If you don't have success, you should see error messages instead that hopefuly can guide you to where things went wrong.
 
 ---

@@ -25,7 +25,7 @@ Starting from the resource group:
 
 This could take a few minutes to finish.
 
-## Set Premissions
+## Set Permissions
 At the moment, you have permission to manage the Key Vault itself, but not it's data.  Let's make you an admin:
 
 1. Once the cache is created, navigate to it.
@@ -70,20 +70,16 @@ Finally we can store our secret.  But first we need to go get it! This is probab
 
 1. Open a new browser tab and navigate to your App Service.
 1. Select the _Configuration_ blade
-1. Click on the name of the Redis connection string application setting.
+1. Click on the name of the Redis connection string application setting (CacheConnection).
 1. Copy the value.
 
 Now we can put it in Key Vault
 1. Back in the tab with Key Vault open, select the _Secrets_ blade.
 1. Click _Generate/Import_ button in the toolbar
 1. Enter a Name
-    - I'm using ""
+    - I'm using "CacheConnection"
 1. Enter the Secret Value (paste in what you copied from the App Service setting)
 1. Click _Create_
-
-### Cleanup the Public Access
-Let's remove that temporary access from our IP Address
-
 
 ## Configure App Service to Use Key Vault
 Next we need to configure the App Service to get the redis connection string from Key Vault instead of storing it directly.
@@ -93,12 +89,21 @@ Let's gather some details from the Key Vault:
 - Secret Name: Just entered above.  Get from the Secrets blade.
 
 1. Switch to the tab with the App Service open.  You should still have the App Setting open to the Redis Connection setting.
-1. Change the Value to:
-    - @Microsoft.KeyVault(kv,sec)
-    - Mine is ...
+1. Change the Value to below and replace the text placeholders "{...}":
+    - @Microsoft.KeyVault(VaultName={keyvaulttname};SecretName={secrentname})
+    - Mine is @Microsoft.KeyVault(VaultName=kv-private-paas;SecretName=CacheConnection)
+1. Click _OK_
+1. Click _Save_
+1. Click _Continue_
 
+### Cleanup the Public Access
+Let's remove that temporary access from our IP Address
 
-### Change the Connection String Setting
+1. Switch back to the Key Vault tab.
+1. Select the _Networking_ blade
+1. Remove the firewall entry you added
+1. Switch _Allow access from_ back to _Disable public access_
+1. Click _Apply_
 
 ## Test Redis Connection
 Now we should be able to test our connection to the Azure Redis Cache. Again, we want to use the Front Door URL, not the App Service URL. 

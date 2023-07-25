@@ -99,6 +99,10 @@ By using Key Vault we have a central place we can manage permissions and change 
 
 Instructions:
 - [Create Azure Key Vault](docs/create-key-vault.md)
+- [Configure Permissions](docs/create-key-vault.md#set-permissions)
+- [Store Secret](docs/create-key-vault.md#store-the-secret)
+- [Configure App Service](docs/create-key-vault.md#configure-app-service-to-use-key-vault)
+- [Test](docs/create-key-vault.md#test-redis-connection)
 
 ## Azure Log Analytics Workspace
 
