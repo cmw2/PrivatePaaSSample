@@ -13,10 +13,20 @@ namespace TestConnectionsApp.Util
         /// <returns>The masked connection string.</returns>
         public static string Mask(string connectionString, string firstSeparator = ";", string secondSeparator = "=")
         {
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                return "";
+            }
+            
             var parts = connectionString.Split(firstSeparator);
             var newConnectionString = new StringBuilder();
             foreach (var part in parts)
             {
+                if (string.IsNullOrEmpty(part))
+                {
+                    continue;
+                }
+
                 var kv = part.Split(secondSeparator);
                 if (kv.Length >= 2 && kv[0].ToLower() == "password")
                 {

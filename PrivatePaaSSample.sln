@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConnectionsApp.Tests", "TestConnectionsApp.Tests\TestConnectionsApp.Tests.csproj", "{DC320A19-0A84-43BB-BBC8-04747A8EB966}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{858143FC-ECD8-48C8-9663-E419187BFE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858143FC-ECD8-48C8-9663-E419187BFE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858143FC-ECD8-48C8-9663-E419187BFE4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC320A19-0A84-43BB-BBC8-04747A8EB966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC320A19-0A84-43BB-BBC8-04747A8EB966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC320A19-0A84-43BB-BBC8-04747A8EB966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC320A19-0A84-43BB-BBC8-04747A8EB966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
